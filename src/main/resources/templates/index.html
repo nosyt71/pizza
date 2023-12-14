@@ -13,7 +13,7 @@
 			<h2>Panucci's Pizza</h2>
 		</div>
 
-		<form>
+		<form th:object="${pizza}" method="post" th:action="@{/handleOrder}">
 			<div>
 				<h2>Select a pizza</h2>
 				<table>
@@ -22,8 +22,9 @@
 							<div>
 								<img src="/images/Bella.png" class="pizza">
 							</div>
+							<!-- <p style="color:red" th:errors="*{pizza.pizzaType}"></p> -->
 							<div>
-								<input type="radio" name="pizza" value="bellaa"> Bella
+								<input type="radio" name="pizza" th:value="bellaa"> Bella
 							</div>
 						</td>
 						<td>
@@ -31,7 +32,7 @@
 								<img src="/images/Margherita.png" class="pizza">
 							</div>
 							<div>
-								<input type="radio" name="pizza" value="margherita"> Margherita
+								<input type="radio" name="pizza" th:value="margherita"> Margherita
 							</div>
 						</td>
 						<td>
@@ -39,7 +40,7 @@
 								<img src="/images/Marinara.png" class="pizza">
 							</div>
 							<div>
-								<input type="radio" name="pizza" value="marinara"> Marinara
+								<input type="radio" name="pizza" th:value="marinara"> Marinara
 							</div>
 						</td>
 						<td>
@@ -47,7 +48,7 @@
 								<img src="/images/SpianataCalabrese.png" class="pizza">
 							</div>
 							<div>
-								<input type="radio" name="pizza" value="spianatacalabrese"> Spianata Calabrese
+								<input type="radio" name="pizza" th:value="spianatacalabrese"> Spianata Calabrese
 							</div>
 						</td>
 						<td>
@@ -55,14 +56,15 @@
 								<img src="/images/TrioFormaggio.png" class="pizza">
 							</div>
 							<div>
-								<input type="radio" name="pizza" value="trioformaggio"> Trio Formaggio
+								<input type="radio" name="pizza" th:value="trioformaggio"> Trio Formaggio
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>Size:</td>
 						<td>
-							<select name="size" data-th-field="*{size}">
+							<p style="color:red" th:errors="*{size}"></p>
+							<select name="size" th:field="*{size}">
 								<option value="sm">Small</option>
 								<option value="md">Medium</option>
 								<option value="lg">Large</option>
@@ -72,7 +74,8 @@
 					<tr>
 						<td>Quantity:</td>
 						<td>
-							<input type="number" name="quantity"> 
+							<p style="color:red" th:errors="*{quantity}"></p>
+							<input type="number" name="quantity" th:field="*{quantity}"> 
 						</td>
 					</tr>
 					<tr>
